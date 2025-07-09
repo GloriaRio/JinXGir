@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JinX - Gallery List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gallery-item {
+            aspect-ratio: 2/3;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(39, 38, 38, 0.3) 50%, transparent 100%);
+            z-index: 1;
+        }
+        
+        .header-gradient {
+            background: linear-gradient(135deg, rgb(37, 30, 57) 0%, rgb(37, 26, 38) 100%);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .title-text {
+            text-shadow: 0 2px 10px rgba(63, 59, 59, 0.1);
+        }
+        
+        .watch-btn {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #6b21a8 0%, #581c87 100%);
+        }
+        
+        .watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(107, 33, 168, 0.4);
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen" style="background: linear-gradient(90deg, rgb(28, 24, 37) 0%, rgb(26, 15, 29) 100%);">
+    <header class="header-gradient sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <button class="text-purple-400 hover:text-purple-300 transition-colors">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </button>
+                    <a href="#" class="text-white hover:text-purple-300 transition-colors font-medium">
+                        <i class="fas fa-home mr-2"></i> Home
+                    </a>
+                </div>
+                <div class="text-center">
+                    <h1 class="title-text text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
+                        Gallery List
+                    </h1>
+                    <p class="text-xs md:text-sm text-gray-400 mt-1">JinX-Girls</p>
+                </div>
+                <div class="w-10"></div> </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="gallery-grid">
+            </div>
+    </main>
+
+    <script>
+        // Mock database - in a real WordPress site this would come from the database
+        const galleryDatabase = [
+            { id: 1, name: "CityX", cover: "https://i.postimg.cc/gJnTFSGB/CENSORED-1.jpg", link: "City_X.html"},
+            { id: 2, name: "Lilia", cover: "" },
+            { id: 3, name: "CosmoBug", cover: "D:/AISHKI/SITE/Site/img/Gallery/Cosmobug/00084-2309219291.jpg" },
+            { id: 4, name: "Police Chloe", cover: "D:/AISHKI/SITE/Site/img/Gallery/Chloe/00307-463111604.jpg" },
+            { id: 5, name: "Shadowbug Geisha", cover: "D:/AISHKI/SITE/Site/img/Gallery/Shadowbug_Geisha/00114-1955523438.jpg" },
+            { id: 6, name: "Ladybug", cover: "D:/AISHKI/SITE/Site/img/Gallery/Ladybug/00008-3651710475.jpg" },
+            { id: 7, name: "Juleka", cover: "D:/AISHKI/SITE/Site/img/Gallery/Juleka/00194-599119382.jpg" },
+            { id: 8, name: "Emily", cover: "D:/AISHKI/SITE/Site/img/Gallery/Emily/00109-1142888099.jpg" }
+        ];
+
+        // Function to create gallery items
+        function createGalleryItems() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            
+            galleryDatabase.forEach(gallery => {
+                // Create an <a> tag instead of a <div>
+                const galleryItem = document.createElement('a');
+                
+                // Set the link destination
+                galleryItem.href = gallery.link; 
+                
+                // Add the same classes for styling
+                galleryItem.className = 'relative rounded-xl overflow-hidden group block'; // 'block' helps styling
+                
+                // The inner HTML remains the same
+                galleryItem.innerHTML = `
+                    <div class="gallery-item w-full h-full" style="background-image: url('${gallery.cover}')"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 z-10">
+                        <h3 class="text-xl font-bold text-white mb-2">${gallery.name}</h3>
+                        <div class="watch-btn text-white px-4 py-2 rounded-full text-sm font-medium inline-block">
+                            Watch Demo <i class="fas fa-play ml-1"></i>
+                        </div>
+                    </div>
+                `;
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Initialize the gallery when the page loads
+        document.addEventListener('DOMContentLoaded', createGalleryItems);
+    </script>
+</body>
+</html>

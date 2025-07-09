@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: rgb(34, 25, 33);
+            color: #e0e0e0;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1/1;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.03);
+        }
+        
+        .cart-btn {
+            background: linear-gradient(135deg, #fc9bec, #f445e0);
+            color: rgb(35, 33, 33);
+            border-radius: 0.375rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            border: 1px solid #775f85;
+        }
+        
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(255, 224, 224, 0.3);
+            background: linear-gradient(135deg, rgb(255, 213, 249), #ecf3ff);
+        }
+        
+        .cart-btn i {
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-btn:hover i {
+            transform: translateX(3px);
+        }
+        
+        /* Fullscreen overlay */
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .fullscreen-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .fullscreen-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: rgb(255, 255, 255);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+        
+        /* Animation for gallery items */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .gallery-item {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        /* Staggered animation delays */
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
+        .gallery-item:nth-child(9) { animation-delay: 0.9s; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Top Cart Button -->
+    <div class="w-full bg-gray-900 py-4 px-6 flex justify-center border-b border-gray-800 sticky top-0 z-50">
+        <button class="cart-btn flex items-center">
+            ADD TO CART $19 
+            <i class="fas fa-shopping-cart ml-2"></i>
+        </button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Item 1 -->
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/gJnTFSGB/CENSORED-1.jpg" alt="Marinette Fashion 1" class="gallery-img">
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/fRC23nLr/CENSORED-102.jpg" class="gallery-img">
+            </div>
+            
+            <!-- Item 3 -->
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/fbg8KcY7/CENSORED-109.jpg" alt="Marinette Fashion 3" class="gallery-img">
+            </div>
+            
+            <!-- Item 4 -->
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/CKKvkPnL/CENSORED-111.jpg" alt="Marinette Fashion 4" class="gallery-img">
+            </div>
+            
+            <!-- Item 5 -->
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/j5wZkDhp/CENSORED-141.jpg" alt="Marinette Fashion 5" class="gallery-img">
+            </div>
+            
+            <!-- Item 6 -->
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/vBJ3RGqc/CENSORED-149.jpg" alt="Marinette Fashion 6" class="gallery-img">
+            </div>
+            
+            <!-- Item 7 -->
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/cH25sRH1/CENSORED-15.jpg" alt="Marinette Fashion 7" class="gallery-img">
+            </div>
+            
+            <!-- Item 8 -->
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/SRcVkH3V/CENSORED-152.jpg" alt="Marinette Fashion 8" class="gallery-img">
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/pXtqqX5S/CENSORED-157.jpg" alt="Marinette Fashion 9" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/QxkSPGpd/CENSORED-159.jpg" alt="Marinette Fashion 10" class="gallery-img">
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/PfDSW8JZ/CENSORED-156.jpg" alt="Marinette Fashion 11" class="gallery-img">
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/rphPHX2r/CENSORED-64.jpg" alt="Marinette Fashion 12" class="gallery-img">
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/gjhtrxXV/CENSORED-25.jpg" alt="Marinette Fashion 13" class="gallery-img">
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/CxhJpPNH/CENSORED-166.jpg" alt="Marinette Fashion 14" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/MZfF9FPn/CENSORED-66.jpg" alt="Marinette Fashion 14" class="gallery-img">
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/gk9BQHQN/CENSORED-68.jpg" alt="Marinette Fashion 14" class="gallery-img">
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/GmdghhcD/CENSORED-69.jpg" alt="Marinette Fashion 14" class="gallery-img">
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/7YgQkTyD/CENSORED-72.jpg" alt="Marinette Fashion 14" class="gallery-img">
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- Bottom Cart Button -->
+    <div class="w-full bg-gray-900 py-4 px-6 flex justify-center border-t border-gray-800">
+        <button class="cart-btn flex items-center">
+           BUY NOW $19
+            <i class="fas fa-shopping-cart ml-2"></i>
+        </button>
+    </div>
+
+    <!-- Fullscreen Overlay -->
+    <div class="fullscreen-overlay">
+        <span class="close-btn"><i class="fas fa-times"></i></span>
+        <img src="" alt="" class="fullscreen-img">
+    </div>
+
+    <script>
+        // Fullscreen image functionality
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const overlay = document.querySelector('.fullscreen-overlay');
+        const fullscreenImg = overlay.querySelector('.fullscreen-img');
+        const closeBtn = overlay.querySelector('.close-btn');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const imgSrc = item.querySelector('img').src;
+                fullscreenImg.src = imgSrc;
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Cart button functionality
+        document.querySelectorAll('.cart-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('$15 item added to your cart');
+            });
+        });
+        
+        // Keyboard navigation for fullscreen
+        document.addEventListener('keydown', (e) => {
+            if (overlay.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
