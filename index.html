@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtGallery | Dark Pink & Gold Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-pink: #330033;
+            --gold: #FFD700;
+            --light-pink: #ff66b3;
+            --dark-purple: #1a001a;
+        }
+        
+        body {
+            background-color: var(--dark-pink);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .bg-gradient-dark {
+            background: linear-gradient(135deg, var(--dark-pink) 0%, var(--dark-purple) 100%);
+        }
+        
+        .text-gold {
+            color: var(--gold);
+        }
+        
+        .border-gold {
+            border-color: var(--gold);
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        
+        .hover-pink-glow:hover {
+            box-shadow: 0 0 20px rgba(255, 102, 179, 0.6);
+        }
+        
+        .carousel-item {
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .gallery-card {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .thumbnail {
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+        
+        .buy-btn {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--gold) 0%, #b8860b 100%);
+        }
+        
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 1s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-caption {
+                bottom: 20px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-dark">
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-70 backdrop-filter backdrop-blur-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-bold text-gold">ArtGallery</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#" class="text-white hover:text-gold px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                            <a href="galleries.html" class="text-gray-300 hover:text-gold px-3 py-2 rounded-md text-sm font-medium">Galleries</a>
+                            <a href="#artists" class="text-gray-300 hover:text-gold px-3 py-2 rounded-md text-sm font-medium">Artists</a>
+                            <a href="#about" class="text-gray-300 hover:text-gold px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <button class="bg-transparent hover:bg-gold text-gold hover:text-black font-bold py-2 px-4 rounded-full border border-gold transition-all duration-300">
+                            Sign In
+                        </button>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Carousel -->
+    <div class="relative pt-16">
+        <div class="carousel w-full h-screen">
+            <!-- Carousel Item 1 -->
+            <div class="carousel-item relative w-full h-full fade-in">
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <div class="parallax w-full h-full" style="background-image: url('https://source.unsplash.com/random/1600x900/?fantasy,art');"></div>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-8">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="text-4xl font-bold text-white mb-2 slide-up">Fantasy Worlds</h2>
+                        <p class="text-gray-300 mb-4 max-w-2xl slide-up">Explore breathtaking fantasy landscapes and characters from talented artists around the world.</p>
+                        <button class="buy-btn text-black font-bold py-2 px-6 rounded-full slide-up">
+                            View Gallery
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carousel Item 2 -->
+            <div class="carousel-item relative w-full h-full hidden">
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <div class="parallax w-full h-full" style="background-image: url('https://source.unsplash.com/random/1600x900/?anime,art');"></div>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-8">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="text-4xl font-bold text-white mb-2">Anime Art Collection</h2>
+                        <p class="text-gray-300 mb-4 max-w-2xl">Stunning anime-inspired artwork from both established and emerging artists.</p>
+                        <button class="buy-btn text-black font-bold py-2 px-6 rounded-full">
+                            View Gallery
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carousel Item 3 -->
+            <div class="carousel-item relative w-full h-full hidden">
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <div class="parallax w-full h-full" style="background-image: url('https://source.unsplash.com/random/1600x900/?digital,painting');"></div>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-8">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="text-4xl font-bold text-white mb-2">Digital Masterpieces</h2>
+                        <p class="text-gray-300 mb-4 max-w-2xl">The finest digital paintings from contemporary artists pushing the boundaries of digital art.</p>
+                        <button class="buy-btn text-black font-bold py-2 px-6 rounded-full">
+                            View Gallery
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Carousel Controls -->
+        <div class="absolute bottom-20 left-0 right-0 flex justify-center space-x-4">
+            <button onclick="prevSlide()" class="bg-black bg-opacity-50 text-gold hover:bg-opacity-70 rounded-full w-10 h-10 flex items-center justify-center">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button onclick="nextSlide()" class="bg-black bg-opacity-50 text-gold hover:bg-opacity-70 rounded-full w-10 h-10 flex items-center justify-center">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Galleries Section -->
+    <section id="galleries" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12 fade-in">
+            <h2 class="text-3xl font-bold text-white mb-4">Featured Galleries</h2>
+            <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
+            <p class="text-gray-300 max-w-2xl mx-auto">Discover our curated collections of stunning artwork from talented creators worldwide.</p>
+        </div>
+        
+        <div class="gallery-grid grid grid-cols-3 gap-8">
+            <!-- Gallery Card 1 -->
+            <div class="gallery-card rounded-lg overflow-hidden hover-glow hover-pink-glow bg-gray-900 bg-opacity-50 backdrop-filter backdrop-blur-sm">
+                <div class="relative overflow-hidden h-64">
+                    <img src="https://source.unsplash.com/random/600x400/?fantasy,art" alt="Fantasy Art" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <h3 class="text-xl font-bold text-white">Fantasy Realms</h3>
+                        <p class="text-gray-300 text-sm">24 artworks</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gold">$29.99</span>
+                        <button class="text-white hover:text-gold transition-colors">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Card 2 -->
+            <div class="gallery-card rounded-lg overflow-hidden hover-glow hover-pink-glow bg-gray-900 bg-opacity-50 backdrop-filter backdrop-blur-sm">
+                <div class="relative overflow-hidden h-64">
+                    <img src="./img/anime1.jpg" alt="Anime Art"
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <h3 class="text-xl font-bold text-white">Anime Collection</h3>
+                        <p class="text-gray-300 text-sm">18 artworks</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gold">$24.99</span>
+                        <button class="text-white hover:text-gold transition-colors">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Card 3 -->
+            <div class="gallery-card rounded-lg overflow-hidden hover-glow hover-pink-glow bg-gray-900 bg-opacity-50 backdrop-filter backdrop-blur-sm">
+                <div class="relative overflow-hidden h-64">
+                    <img src="https://source.unsplash.com/random/600x400/?portrait,art" alt="Portrait Art" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <h3 class="text-xl font-bold text-white">Portrait Masters</h3>
+                        <p class="text-gray-300 text-sm">32 artworks</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gold">$34.99</span>
+                        <button class="text-white hover:text-gold transition-colors">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Card 4 -->
+            <div class="gallery-card rounded-lg overflow-hidden hover-glow hover-pink-glow bg-gray-900 bg-opacity-50 backdrop-filter backdrop-blur-sm">
+                <div class="relative overflow-hidden h-64">
+                    <img src="https://source.unsplash.com/random/600x400/?landscape,art" alt="Landscape Art" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <h3 class="text-xl font-bold text-white">Landscape Wonders</h3>
+                        <p class="text-gray-300 text-sm">28 artworks</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gold">$27.99</span>
+                        <button class="text-white hover:text-gold transition-colors">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Card 5 -->
+            <div class="gallery-card rounded-lg overflow-hidden hover-glow hover-pink-glow bg-gray-900 bg-opacity-50 backdrop-filter backdrop-blur-sm">
+                <div class="relative overflow-hidden h-64">
+                    <img src="https://source.unsplash.com/random/600x400/?abstract,art" alt="Abstract Art" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <h3 class="text-xl font-bold text-white">Abstract Visions</h3>
+                        <p class="text-gray-300 text-sm">20 artworks</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gold">$22.99</span>
+                        <button class="text-white hover:text-gold transition-colors">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Card 6 -->
+            <div class="gallery-card rounded-lg overflow-hidden hover-glow hover-pink-glow bg-gray-900 bg-opacity-50 backdrop-filter backdrop-blur-sm">
+                <div class="relative overflow-hidden h-64">
+                    <img src="https://source.unsplash.com/random/600x400/?concept,art" alt="Concept Art" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+                    <div class="absolute bottom-0 left-0 p-4">
+                        <h3 class="text-xl font-bold text-white">Concept Designs</h3>
+                        <p class="text-gray-300 text-sm">16 artworks</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gold">$19.99</span>
+                        <button class="text-white hover:text-gold transition-colors">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <button class="bg-transparent hover:bg-gold text-gold hover:text-black font-bold py-3 px-8 rounded-full border border-gold transition-all duration-300">
+                View All Galleries
+            </button>
+        </div>
+    </section>
+
+    <!-- Gallery List Preview Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-black bg-opacity-20 rounded-3xl my-12">
+        <div class="text-center mb-12 fade-in">
+            <h2 class="text-3xl font-bold text-white mb-4">Popular Collections</h2>
+            <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
+            <p class="text-gray-300 max-w-2xl mx-auto">Browse through our most popular collections of digital artwork.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Thumbnail 1 -->
+            <div class="thumbnail rounded-lg overflow-hidden hover-glow">
+                <div class="relative pb-[100%]">
+                    <img src="https://source.unsplash.com/random/300x300/?fantasy,1" alt="Fantasy Art 1" class="absolute w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-70 transition-opacity duration-300 flex items-end p-4">
+                        <h3 class="text-white font-medium">MARINETTE</h3>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">by Artist1</span>
+                        <span class="text-gold text-sm font-medium">$9.99</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thumbnail 2 -->
+            <div class="thumbnail rounded-lg overflow-hidden hover-glow">
+                <div class="relative pb-[100%]">
+                    <img src="https://source.unsplash.com/random/300x300/?fantasy,2" alt="Fantasy Art 2" class="absolute w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-70 transition-opacity duration-300 flex items-end p-4">
+                        <h3 class="text-white font-medium">DRAGONHEART</h3>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">by Artist2</span>
+                        <span class="text-gold text-sm font-medium">$12.99</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thumbnail 3 -->
+            <div class="thumbnail rounded-lg overflow-hidden hover-glow">
+                <div class="relative pb-[100%]">
+                    <img src="https://source.unsplash.com/random/300x300/?fantasy,3" alt="Fantasy Art 3" class="absolute w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-70 transition-opacity duration-300 flex items-end p-4">
+                        <h3 class="text-white font-medium">MOONLIGHT</h3>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">by Artist3</span>
+                        <span class="text-gold text-sm font-medium">$8.99</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thumbnail 4 -->
+            <div class="thumbnail rounded-lg overflow-hidden hover-glow">
+                <div class="relative pb-[100%]">
+                    <img src="https://source.unsplash.com/random/300x300/?fantasy,4" alt="Fantasy Art 4" class="absolute w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-70 transition-opacity duration-300 flex items-end p-4">
+                        <h3 class="text-white font-medium">STARGAZER</h3>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">by Artist4</span>
+                        <span class="text-gold text-sm font-medium">$14.99</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thumbnail 5 -->
+            <div class="thumbnail rounded-lg overflow-hidden hover-glow">
+                <div class="relative pb-[100%]">
+                    <img src="https://source.unsplash.com/random/300x300/?fantasy,5" alt="Fantasy Art 5" class="absolute w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-70 transition-opacity duration-300 flex items-end p-4">
+                        <h3 class="text-white font-medium">NEBULA</h3>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">by Artist5</span>
+                        <span class="text-gold text-sm font-medium">$11.99</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thumbnail 6 -->
+            <div class="thumbnail rounded-lg overflow-hidden hover-glow">
+                <div class="relative pb-[100%]">
+                    <img src="https://source.unsplash.com/random/300x300/?fantasy,6" alt="Fantasy Art 6" class="absolute w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-70 transition-opacity duration-300 flex items-end p-4">
+                        <h3 class="text-white font-medium">PHOENIX</h3>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">by Artist6</span>
+                        <span class="text-gold text-sm font-medium">$10.99</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thumbnail 7 -->
+            <div class="thumbnail rounded-lg overflow-hidden hover-glow">
+                <div class="relative pb-[100%]">
+                    <img src="https://source.unsplash.com/random/300x300/?fantasy,7" alt="Fantasy Art 7" class="absolute w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-70 transition-opacity duration-300 flex items-end p-4">
+                        <h3 class="text-white font-medium">SIREN</h3>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">by Artist7</span>
+                        <span class="text-gold text-sm font-medium">$13.99</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thumbnail 8 -->
+            <div class="thumbnail rounded-lg overflow-hidden hover-glow">
+                <div class="relative pb-[100%]">
+                    <img src="https://source.unsplash.com/random/300x300/?fantasy,8" alt="Fantasy Art 8" class="absolute w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-70 transition-opacity duration-300 flex items-end p-4">
+                        <h3 class="text-white font-medium">VALKYRIE</h3>
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-300">by Artist8</span>
+                        <span class="text-gold text-sm font-medium">$15.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Fixed Buy Button (visible on scroll) -->
+        <div class="fixed right-4 bottom-4 z-40 hidden" id="fixedBuyBtn">
+            <button class="buy-btn text-black font-bold py-3 px-6 rounded-full shadow-lg flex items-center">
+                <i class="fas fa-shopping-cart mr-2"></i> Buy Now ($49.99)
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-gold mb-4">ArtGallery</h3>
+                    <p class="text-gray-300">The premier destination for digital art collectors and enthusiasts.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Explore</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-gold transition-colors">Galleries</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-gold transition-colors">Artists</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-gold transition-colors">Collections</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-gold transition-colors">Exhibitions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-gold transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-gold transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-gold transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-gold transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-gold text-xl transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-xl transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-xl transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-gold text-xl transition-colors">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-300">Subscribe to our newsletter</p>
+                        <div class="flex mt-2">
+                            <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-2 rounded-l focus:outline-none focus:ring-1 focus:ring-gold w-full">
+                            <button class="bg-gold text-black px-4 py-2 rounded-r font-medium">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 ArtGallery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('hidden', i !== index);
+                slide.classList.toggle('fade-in', i === index);
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+        
+        // Show first slide on load
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(0);
+            
+            // Add scroll event for fixed buy button
+            window.addEventListener('scroll', () => {
+                const fixedBtn = document.getElementById('fixedBuyBtn');
+                if (window.scrollY > 300) {
+                    fixedBtn.classList.remove('hidden');
+                } else {
+                    fixedBtn.classList.add('hidden');
+                }
+            });
+            
+            // Add intersection observer for animations
+            const fadeElements = document.querySelectorAll('.fade-in, .slide-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
